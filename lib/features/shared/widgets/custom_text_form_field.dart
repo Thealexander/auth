@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class CustomTextFormField extends StatelessWidget {
 
   final String? label;
@@ -9,6 +8,7 @@ class CustomTextFormField extends StatelessWidget {
   final bool obscureText;
   final TextInputType? keyboardType;
   final Function(String)? onChanged;
+  final Function(String)? onFieldSubmitted;
   final String? Function(String?)? validator;
 
   const CustomTextFormField({
@@ -19,6 +19,7 @@ class CustomTextFormField extends StatelessWidget {
     this.obscureText = false,
     this.keyboardType = TextInputType.text,
     this.onChanged, 
+    this.onFieldSubmitted, 
     this.validator, 
   });
 
@@ -50,6 +51,7 @@ class CustomTextFormField extends StatelessWidget {
       child: TextFormField(
         onChanged: onChanged,
         validator: validator,
+        onFieldSubmitted: onFieldSubmitted,
         obscureText: obscureText,
         keyboardType: keyboardType,
         style: const TextStyle( fontSize: 20, color: Colors.black54 ),
@@ -57,8 +59,8 @@ class CustomTextFormField extends StatelessWidget {
           floatingLabelStyle: const TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 18),
           enabledBorder: border,
           focusedBorder: border,
-          errorBorder: border.copyWith( borderSide: BorderSide( color: Colors.red.shade800 )),
-          focusedErrorBorder: border.copyWith( borderSide: BorderSide( color: Colors.red.shade800 )),
+          errorBorder: border.copyWith( borderSide: const BorderSide( color: Colors.transparent )),
+          focusedErrorBorder: border.copyWith( borderSide: const BorderSide( color: Colors.transparent )),
           isDense: true,
           label: label != null ? Text(label!) : null,
           hintText: hint,
