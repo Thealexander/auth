@@ -44,8 +44,9 @@ final goRouterProvider = Provider((ref) {
       final isGoingTo = state.matchedLocation;
       final authStatus = goRouterNotifier.authStatus;
 
-      if (isGoingTo == '/splash' && authStatus == AuthStatus.checking)
+      if (isGoingTo == '/splash' && authStatus == AuthStatus.checking) {
         return null;
+      }
 
       if (authStatus == AuthStatus.notAuthenticated) {
         if (isGoingTo == '/login' || isGoingTo == '/register') return null;

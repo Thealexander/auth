@@ -12,6 +12,7 @@ class ProductsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final scaffoldKey = GlobalKey<ScaffoldState>();
+
     return Scaffold(
       drawer: SideMenu(scaffoldKey: scaffoldKey),
       appBar: AppBar(
@@ -24,7 +25,9 @@ class ProductsScreen extends StatelessWidget {
       floatingActionButton: FloatingActionButton.extended(
         label: const Text('Nuevo producto'),
         icon: const Icon(Icons.add),
-        onPressed: () {},
+        onPressed: () {
+          context.push('/product/new');
+        },
       ),
     );
   }
@@ -32,15 +35,18 @@ class ProductsScreen extends StatelessWidget {
 
 class _ProductsView extends ConsumerStatefulWidget {
   const _ProductsView();
+
   @override
   _ProductsViewState createState() => _ProductsViewState();
 }
 
 class _ProductsViewState extends ConsumerState {
   final ScrollController scrollController = ScrollController();
+
   @override
   void initState() {
     super.initState();
+
     scrollController.addListener(() {
       if ((scrollController.position.pixels + 400) >=
           scrollController.position.maxScrollExtent) {
@@ -58,6 +64,7 @@ class _ProductsViewState extends ConsumerState {
   @override
   Widget build(BuildContext context) {
     final productsState = ref.watch(productsProvider);
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10),
       child: MasonryGridView.count(
