@@ -1,4 +1,4 @@
-package com.example.teslo_shop
+package com.new.balexg.tstore
 
 import io.flutter.embedding.android.FlutterActivity
 
